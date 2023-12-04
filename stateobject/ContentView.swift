@@ -7,18 +7,17 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+class TimerManager: ObservableObject {
+    @Published var timerCount = 0;
+    
+    private var timer = Timer();
+    
+    func Start() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+             self.timerCount += 1
+           }
     }
-}
-
-#Preview {
-    ContentView()
+    func stop() {
+        timer.invalidate();
+    }
 }
