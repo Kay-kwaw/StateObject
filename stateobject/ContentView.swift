@@ -21,3 +21,32 @@ class TimerManager: ObservableObject {
         timer.invalidate();
     }
 }
+
+
+
+struct ContentView: View {
+    @StateObject private var timerManager = TimerManager()
+    
+    
+    var body: some View {
+        VStack {
+            Text("Timer count: \(timerManager.timerCount)")
+            Button(action: {
+                   timerManager.Start()
+                 }) {
+                   Text("Start Timer")
+                 }
+                 Button(action: {
+                   timerManager.stop()
+                 }) {
+                   Text("Stop Timer")
+                 }
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+      }
+}
